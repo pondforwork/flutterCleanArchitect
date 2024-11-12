@@ -1,17 +1,17 @@
 import 'package:flutter_application_chopper/data/sources/api/student_api.dart';
-import 'package:flutter_application_chopper/domain/entities/Student.dart';  // Import your Student entity
-import 'package:flutter_application_chopper/domain/repositories/student_repository.dart';  // Import your repository interface
+import 'package:flutter_application_chopper/domain/entities/Student.dart'; // Import your Student entity
+import 'package:flutter_application_chopper/domain/repositories/student_repository.dart'; // Import your repository interface
 
 class StudentRepositoryImpl implements StudentRepository {
-  final StudentApi apiService;
+  final StudentApi studentApiService;
 
-  StudentRepositoryImpl({required this.apiService});
+  StudentRepositoryImpl({required this.studentApiService});
 
   @override
   Future<List<Student>> getAllStudents() async {
     try {
       // Calling the API service to get all students
-      final response = await apiService.fetchStudents();
+      final response = await studentApiService.fetchStudents();
       print(response);
       return response;
     } catch (e) {
@@ -24,7 +24,7 @@ class StudentRepositoryImpl implements StudentRepository {
   Future<Student?> getStudentById(int id) async {
     try {
       // Calling the API service to get a student by ID
-      final response = await apiService.fetchStudentById(id);
+      final response = await studentApiService.fetchStudentById(id);
       return response;
     } catch (e) {
       // Handle errors (optional)
